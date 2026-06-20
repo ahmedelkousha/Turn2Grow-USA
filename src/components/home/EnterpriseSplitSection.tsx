@@ -12,55 +12,55 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export function EnterpriseSplitSection() {
-    const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-      const mm = gsap.matchMedia();
-  
-      mm.add({
-        isDesktop: "(min-width: 1024px)",
-        isMobile: "(max-width: 1023px)"
-      }, (context) => {
-        const { isDesktop, isMobile } = context.conditions as any;
-  
-        if (isDesktop) {
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top top",
-              end: "top -40%",
-              pinSpacing: false,
-              pin: '.text-enterprise',
-              markers: false,
-              scrub: 1,
-              invalidateOnRefresh: true
-            }
-          });
-        }
+    const mm = gsap.matchMedia();
 
-        if (isMobile || isDesktop) {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
-            }
-          });
+    mm.add({
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(max-width: 1023px)"
+    }, (context) => {
+      const { isDesktop, isMobile } = context.conditions as any;
 
-          tl.fromTo(".security-image",
-            { scale: 1.35, yPercent: -20 },
-            { scale: 1.0, yPercent: 20, ease: "none" },
-            0
-          );
-        }
-      });
-  
-      return () => mm.revert();
-    }, { scope: containerRef });
+      if (isDesktop) {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "top -40%",
+            pinSpacing: false,
+            pin: '.text-enterprise',
+            markers: false,
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+      }
+
+      if (isMobile || isDesktop) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        });
+
+        tl.fromTo(".security-image",
+          { scale: 1.35, yPercent: -20 },
+          { scale: 1.0, yPercent: 20, ease: "none" },
+          0
+        );
+      }
+    });
+
+    return () => mm.revert();
+  }, { scope: containerRef });
   return (
     <section ref={containerRef} className="border-y border-border/40 bg-surface/30 py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <motion.div initial={{ opacity: 0}} whileInView={{ opacity: 1}} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-enterprise">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-enterprise">
           <span className="text-xs font-medium uppercase tracking-wider text-primary">SaaS & Enterprise</span>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-gradient sm:text-4xl">Software built for high-stakes operations.</h2>
           <p className="mt-4 text-base text-muted-foreground">From custom B2B SaaS and payment reconciliation engines to secure CRM databases, we build platforms that respect complex workflows, satisfy security compliance, and run reliably at scale.</p>

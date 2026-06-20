@@ -76,10 +76,7 @@ export function HeroSection() {
   return (
     <section id="hero" ref={containerRef} className="relative isolate overflow-hidden bg-background">
       {/* Decorative Radial Glows from Coming Soon page */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="glow-1 absolute top-[-10%] left-[5%] h-[600px] w-[600px] rounded-full bg-primary/10 blur-[130px] sm:left-[20%]" />
-        <div className="glow-2 absolute bottom-[-10%] right-[5%] h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px] sm:right-[15%]" />
-      </div>
+      <div className="bg-gradient-to-b from-primary/10 via-[#0b0809]/25  via-primary/5 pointer-events-none absolute inset-0 -z-10"/>
 
       <div className="mx-auto max-w-8xl px-4 py-18 sm:px-6 sm:py-26 lg:px-8 lg:py-24">
         {/* 3D Dashboard Mockup */}

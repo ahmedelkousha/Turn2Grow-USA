@@ -45,37 +45,66 @@ export function PartnersSection() {
   useGSAP(() => {
     if (!mounted) return;
 
-    // Slide row 1 left on scroll
-    gsap.fromTo(
-      row1Ref.current,
-      { x: "0%" },
-      {
-        x: "-15%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      }
-    );
+    const mm = gsap.matchMedia();
 
-    // Slide row 2 right on scroll
-    gsap.fromTo(
-      row2Ref.current,
-      { x: "-15%" },
-      {
-        x: "0%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      }
-    );
+    mm.add("(min-width: 768px)", () => {
+      // Slide row 1 left on scroll
+      gsap.fromTo(
+        row1Ref.current,
+        { x: "0%" },
+        {
+          x: "-15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }
+      );
+
+      // Slide row 2 right on scroll
+      gsap.fromTo(
+        row2Ref.current,
+        { x: "-15%" },
+        {
+          x: "0%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }
+      );
+    });
+
+    mm.add("(max-width: 767px)", () => {
+      // Mobile: Smooth, infinite loop marquee (0 scroll listener overhead)
+      gsap.fromTo(row1Ref.current,
+        { x: "0%" },
+        {
+          x: "-50%",
+          duration: 20,
+          ease: "none",
+          repeat: -1
+        }
+      );
+
+      gsap.fromTo(row2Ref.current,
+        { x: "-50%" },
+        {
+          x: "0%",
+          duration: 20,
+          ease: "none",
+          repeat: -1
+        }
+      );
+    });
+
+    return () => mm.revert();
   }, { scope: containerRef, dependencies: [mounted] });
 
   if (!mounted) {
@@ -90,9 +119,9 @@ export function PartnersSection() {
     );
   }
 
-  // Repeat logos 4 times to prevent trailing gaps on wide viewports
-  const slidesRow1 = [...row1, ...row1, ...row1, ...row1];
-  const slidesRow2 = [...row2, ...row2, ...row2, ...row2];
+  // Repeat logos 2 times to prevent trailing gaps on wide viewports (cut DOM nodes by 50%)
+  const slidesRow1 = [...row1, ...row1];
+  const slidesRow2 = [...row2, ...row2];
 
   return (
     <section ref={containerRef} className="partners-section relative overflow-hidden bg-background py-16 sm:py-20 border-b border-border/40">
@@ -108,12 +137,12 @@ export function PartnersSection() {
           <div ref={row1Ref} className="flex gap-6 w-max flex-nowrap">
             {slidesRow1.map((p, i) => (
               <div key={i} className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={p.logo} 
                   alt={`${p.name} logo`} 
-                  width={100}
-                  height={20}
                   className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
+                  loading="lazy"
                 />
                 <span>{p.name}</span>
               </div>
@@ -126,12 +155,12 @@ export function PartnersSection() {
           <div ref={row2Ref} className="flex gap-6 w-max flex-nowrap">
             {slidesRow2.map((p, i) => (
               <div key={i} className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={p.logo} 
                   alt={`${p.name} logo`} 
-                  width={100}
-                  height={20}
                   className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
+                  loading="lazy"
                 />
                 <span>{p.name}</span>
               </div>
