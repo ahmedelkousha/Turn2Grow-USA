@@ -52,7 +52,7 @@ export function HeroDashboardMockup() {
             </div>
             <div className="code-line flex gap-4">
               <span className="w-5 text-right text-muted-foreground/30 select-none">3</span>
-              <span><span className="text-zinc-500">// Initialize client scaling workflow</span></span>
+              <span><span className="text-zinc-500">{"// Initialize client scaling workflow"}</span></span>
             </div>
             <div className="code-line flex gap-4">
               <span className="w-5 text-right text-muted-foreground/30 select-none">4</span>
@@ -84,7 +84,7 @@ export function HeroDashboardMockup() {
             </div>
             <div className="code-line flex gap-4">
               <span className="w-5 text-right text-muted-foreground/30 select-none">11</span>
-              <span><span className="text-zinc-500">// Run autonomous platform orchestration</span></span>
+              <span><span className="text-zinc-500">{"// Run autonomous platform orchestration"}</span></span>
             </div>
             <div className="code-line flex gap-4">
               <span className="w-5 text-right text-muted-foreground/30 select-none">12</span>
@@ -100,7 +100,7 @@ export function HeroDashboardMockup() {
             </div>
             <div className="code-line flex gap-4 text-emerald-400 font-semibold">
               <span className="w-5 text-right text-muted-foreground/30 select-none">15</span>
-              <span className="pl-4">// &gt;&gt; Uptime: 99.95% | SOC 2 Compliant</span>
+              <span className="pl-4">{"// >> Uptime: 99.95% | SOC 2 Compliant"}</span>
             </div>
             <div className="code-line flex gap-4">
               <span className="w-5 text-right text-muted-foreground/30 select-none">16</span>
