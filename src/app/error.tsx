@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Error({
   error,
@@ -19,18 +20,24 @@ export default function Error({
           Something went wrong on our end. Try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
+          <Button
+            variant="orange"
+            size="premium-sm"
+            shape="full"
             onClick={reset}
-            className="rounded-full bg-gradient-orange px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Try again
-          </button>
-          <Link
-            href="/"
-            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-surface"
+          </Button>
+          <Button
+            asChild
+            variant="premium-outline"
+            size="premium-sm"
+            shape="full"
           >
-            Go home
-          </Link>
+            <Link href="/">
+              Go home
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

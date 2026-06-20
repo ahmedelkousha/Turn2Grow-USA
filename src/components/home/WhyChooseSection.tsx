@@ -28,7 +28,7 @@ export function WhyChooseSection() {
         <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
           {whyChoose.map((w, i) => (
             <motion.div key={w.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: i * 0.05 }} className="group flex gap-4 rounded-2xl border border-border/50 bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-glow">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-gradient-orange group-hover:text-primary-foreground"><w.icon className="h-5 w-5" /></div>
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"><w.icon className="h-5 w-5" /></div>
               <div><h3 className="text-base font-semibold text-foreground">{w.title}</h3><p className="mt-1.5 text-sm text-muted-foreground">{w.body}</p></div>
             </motion.div>
           ))}

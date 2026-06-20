@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Heart, Target, Compass, Shield, Sparkles, Rocket } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import aboutTeam from "@/assets/about-team.jpg";
+import { Button } from "@/components/ui/button";
 
 const values = [
   { icon: Heart, title: "Craft, not output", body: "We measure ourselves by what we ship, not what we bill." },
@@ -21,7 +22,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title={<>We&apos;re a small team building <span className="text-gradient-orange">big growth engines</span>.</>}
-        description="Turn2Grow is a US-based software agency engineering custom platforms for healthcare providers and small-to-medium enterprises. We're headquartered in Delaware and ship for clients nationwide."
+        description="Turn2Grow is a US-based software agency engineering custom platforms, scalable SaaS products, and cloud infrastructure. We're headquartered in Wilmington, North Carolina and ship for clients nationwide."
       />
 
       <section className="py-20 sm:py-24">
@@ -47,11 +48,13 @@ export default function AboutPage() {
               Most software projects fail because the strategy team doesn&apos;t own delivery, and the delivery team doesn&apos;t own outcomes. We built Turn2Grow to close that gap — a single, accountable team that handles discovery, design, engineering, deployment, and support.
             </p>
             <p className="mt-4 text-base text-muted-foreground">
-              We started with deep roots in healthcare — EHR, telemedicine, revenue cycle, compliance — and expanded into the SaaS, CRM, AI, and cloud work that growing SMEs need to compete. The connecting thread is the same: software built around your workflows, your goals, and your growth trajectory.
+              We have deep experience building secure systems for SaaS, enterprise, and regulated sectors like healthcare. The connecting thread is the same: software built around your workflows, your goals, and your growth trajectory.
             </p>
-            <Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow">
-              Work with us <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="orange" size="premium" shape="full" className="mt-8">
+              <Link href="/contact">
+                Work with us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -83,13 +86,71 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="py-20 sm:py-24 border-b border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight text-gradient sm:text-4xl">Meet our team</h2>
+            <p className="mt-4 text-base text-muted-foreground">The digital product builders behind our success.</p>
+          </div>
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                name: "Ahmed El Kousha",
+                role: "Founder & Product Strategy",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+                bio: "Ex-strategy lead. Coordinates product scope, growth strategy, and ensures end-to-end alignment."
+              },
+              {
+                name: "Sarah Chen",
+                role: "Lead Technical Architect",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80",
+                bio: "Cloud & backend pioneer. Heavy experience with SOC 2 compliance, multi-tenant databases, and security."
+              },
+              {
+                name: "Marcus Vance",
+                role: "Senior Fullstack Engineer",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80",
+                bio: "Modern web specialist. Loves building performant APIs, dashboard integrations, and custom CRM systems."
+              },
+              {
+                name: "Elena Rostova",
+                role: "Head of UX & Product Design",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400&q=80",
+                bio: "Crafts elegant design systems, user journeys, and premium dark-mode visual styles."
+              }
+            ].map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-surface/50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow"
+              >
+                <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mt-4 text-base font-semibold text-foreground">{member.name}</h3>
+                <p className="text-xs font-medium text-primary mt-1">{member.role}</p>
+                <p className="mt-3 text-xs text-muted-foreground leading-relaxed">{member.bio}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 md:grid-cols-3">
             {[
-              { label: "Founded", value: "Delaware, USA" },
+              { label: "Founded", value: "Wilmington, NC, USA" },
               { label: "Coverage", value: "Nationwide" },
-              { label: "Focus", value: "Healthcare + SMEs" },
+              { label: "Focus", value: "SaaS, Enterprise & SMEs" },
               { label: "Disciplines", value: "12 services" },
               { label: "Compliance posture", value: "HIPAA / SOC 2" },
               { label: "Team model", value: "Embedded, accountable" },

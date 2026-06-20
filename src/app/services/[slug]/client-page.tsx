@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import { services } from "@/lib/site-data";
+import { Button } from "@/components/ui/button";
 
 export function ServiceDetailClient({ slug }: { slug: string }) {
   const service = services.find((s) => s.slug === slug)!;
@@ -45,9 +46,11 @@ export function ServiceDetailClient({ slug }: { slug: string }) {
             {service.overview}
           </motion.p>
           <div className="mt-8">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow">
-              Scope this with us <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="orange" size="premium" shape="full">
+              <Link href="/contact">
+                Scope this with us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -151,12 +154,16 @@ export function ServiceDetailClient({ slug }: { slug: string }) {
           <h2 className="text-3xl font-semibold tracking-tight text-gradient sm:text-4xl">Let&apos;s scope your {service.title.toLowerCase()} engagement.</h2>
           <p className="mt-4 text-base text-muted-foreground">A 30-minute conversation is usually enough for us to come back with a sharp proposal.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow">
-              Talk to us <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/services" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-medium text-foreground hover:bg-surface">
-              Browse all services
-            </Link>
+            <Button asChild variant="orange" size="premium" shape="full">
+              <Link href="/contact">
+                Talk to us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="premium-outline" size="premium" shape="full">
+              <Link href="/services">
+                Browse all services
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

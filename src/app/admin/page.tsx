@@ -6,6 +6,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FileText, Briefcase, Inbox, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { AdminGate } from "@/components/AdminGate";
 import { listBlogPosts, listCaseStudies, listInquiries, seedSampleContent } from "@/lib/firebase-data";
+import { Button } from "@/components/ui/button";
 
 export default function AdminHomePage() {
   return (
@@ -68,14 +69,17 @@ function AdminHome() {
           </p>
           {seedMsg && <p className="mt-2 text-xs text-primary">{seedMsg}</p>}
         </div>
-        <button
+        <Button
           onClick={() => { setSeedMsg(null); seed.mutate(); }}
           disabled={seed.isPending}
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-orange px-4 py-2 text-sm font-medium text-primary-foreground shadow-glow disabled:opacity-60"
+          variant="orange"
+          size="premium-sm"
+          shape="full"
+          className="shrink-0"
         >
           {seed.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
           {seed.isPending ? "Importing…" : "Import sample content"}
-        </button>
+        </Button>
       </div>
 
 

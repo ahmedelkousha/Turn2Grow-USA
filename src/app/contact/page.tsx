@@ -7,6 +7,7 @@ import { Mail, MapPin, Phone, Send, CheckCircle2, ArrowRight, Loader2 } from "lu
 import { PageHero } from "@/components/PageHero";
 import { createInquiry } from "@/lib/firebase-data";
 import { isFirebaseConfigured } from "@/lib/firebase";
+import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -38,7 +39,7 @@ export default function ContactPage() {
               {[
                 { icon: Mail, label: "Email", value: "hello@turn2grow.com" },
                 { icon: Phone, label: "Phone", value: "+1 (302) 555-0142" },
-                { icon: MapPin, label: "Headquarters", value: "Delaware, United States" },
+                { icon: MapPin, label: "Headquarters", value: "609A Piner Rd, Wilmington, NC 28409, United States" },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-3 rounded-2xl border border-border/40 bg-surface/40 p-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -127,13 +128,13 @@ export default function ContactPage() {
                       defaultValue=""
                     >
                       <option value="" disabled>Select a service area</option>
+                      <option>SaaS Product</option>
+                      <option>AI / Machine Learning</option>
+                      <option>Cloud / DevOps</option>
+                      <option>CRM / Automation</option>
                       <option>EHR & Healthcare Software</option>
                       <option>Telemedicine Platform</option>
                       <option>Medical Billing</option>
-                      <option>SaaS Product</option>
-                      <option>CRM / Automation</option>
-                      <option>AI / Machine Learning</option>
-                      <option>Cloud / DevOps</option>
                       <option>Cybersecurity / Compliance</option>
                       <option>Something else</option>
                     </select>
@@ -150,14 +151,17 @@ export default function ContactPage() {
                     />
                   </div>
                   {error && <p className="rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">{error}</p>}
-                  <button
+                  <Button
                     type="submit"
                     disabled={busy}
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.01] disabled:opacity-60 sm:w-auto"
+                    variant="orange"
+                    size="premium-lg"
+                    shape="full"
+                    className="group"
                   >
                     {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
                     {busy ? "Sending..." : "Send message"}
-                  </button>
+                  </Button>
                   <p className="text-xs text-muted-foreground">By submitting, you agree to be contacted about your inquiry. We never share your details.</p>
                 </form>
               )}

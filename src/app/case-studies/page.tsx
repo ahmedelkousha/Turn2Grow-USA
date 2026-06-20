@@ -21,7 +21,7 @@ export default function CaseStudiesIndex() {
     slug: c.slug, client: c.client, industry: c.industry, title: c.title, summary: c.summary,
     challenge: c.challenge, solution: c.solution, results: c.results, services: c.services, duration: c.duration,
   }));
-  
+
   const map = new Map<string, CaseStudy>();
   for (const i of seed) map.set(i.slug, i);
   for (const i of remoteItems) map.set(i.slug, i);

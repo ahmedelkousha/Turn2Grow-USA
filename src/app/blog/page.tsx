@@ -36,7 +36,7 @@ export default function BlogIndex() {
       <PageHero
         eyebrow="Blog"
         title={<>Field notes from the <span className="text-gradient-orange">build floor</span>.</>}
-        description="What we've learned shipping healthcare and SME software in the real world — and what's worth your attention right now."
+        description="What we've learned building scalable SaaS, complex workflows, and enterprise software in the real world — and what's worth your attention right now."
       />
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

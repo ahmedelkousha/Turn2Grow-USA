@@ -22,6 +22,7 @@ import { createInquiry } from "@/lib/firebase-data";
 import { isFirebaseConfigured } from "@/lib/firebase";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 // Target date: October 15, 2026 00:00:00 UTC
 const TARGET_DATE = new Date("2026-07-10T00:00:00Z");
@@ -37,8 +38,8 @@ function ThreadsIcon({ className }: { className?: string }) {
 const socialLinks = [
   { href: "https://www.facebook.com/turn2grow", label: "Facebook", icon: Facebook },
   { href: "https://www.instagram.com/turn2grow", label: "Instagram", icon: Instagram },
-  { href: "https://x.com/turn2grovv", label: "Twitter (X)", icon: Twitter },
-  { href: "https://www.threads.com/@turn2grow", label: "Threads", icon: ThreadsIcon },
+  // { href: "https://x.com/turn2grovv", label: "Twitter (X)", icon: Twitter },
+  // { href: "https://www.threads.com/@turn2grow", label: "Threads", icon: ThreadsIcon },
   { href: "https://www.linkedin.com/company/turn2grow", label: "LinkedIn", icon: Linkedin },
 ];
 
@@ -131,9 +132,8 @@ export default function ComingSoonPage() {
     window.location.reload();
   };
 
-  // Shift content up by 16 units to offset the main layout pt-16
   return (
-    <div className="relative min-h-screen -mt-16 overflow-hidden bg-background text-foreground grid-bg flex flex-col justify-between px-4 py-8 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen overflow-hidden bg-background text-foreground grid-bg flex flex-col justify-between px-4 py-8 sm:px-6 lg:px-8">
       <Toaster />
 
       {/* Decorative Radial Glows */}
@@ -227,18 +227,21 @@ export default function ComingSoonPage() {
                     className="w-full pl-7 bg-transparent border-0 text-sm text-foreground focus:ring-0 focus:outline-none placeholder:text-muted-foreground"
                   />
                 </div>
-                <button
+                <Button
                   id="newsletter-submit"
                   type="submit"
                   disabled={busy}
-                  className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-1.5 rounded-xl sm:rounded-full bg-gradient-orange px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.01] active:scale-95 disabled:opacity-60"
+                  variant="orange"
+                  size="premium"
+                  shape="xl"
+                  className="w-full sm:w-auto shrink-0 sm:rounded-full"
                 >
                   {busy ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
                     "Notify Me"
                   )}
-                </button>
+                </Button>
               </motion.form>
             ) : (
               <motion.div
@@ -274,14 +277,16 @@ export default function ComingSoonPage() {
               </a>
             ))}
           </div>
-          <button
-            id="demo-controls-trigger"
-            onClick={() => setShowControls(true)}
-            className="flex items-center gap-1 rounded-md border border-primary/20 bg-primary/5 px-2.5 py-1.5 font-medium text-primary hover:bg-primary/10 transition-colors"
-            title="Developer Simulation panel"
-          >
-            <Settings className="h-3.5 w-3.5 animate-spin-slow" /> Demo Controls
-          </button>
+          {process.env.NODE_ENV !== "production" && (
+            <button
+              id="demo-controls-trigger"
+              onClick={() => setShowControls(true)}
+              className="flex items-center gap-1 rounded-md border border-primary/20 bg-primary/5 px-2.5 py-1.5 font-medium text-primary hover:bg-primary/10 transition-colors"
+              title="Developer Simulation panel"
+            >
+              <Settings className="h-3.5 w-3.5 animate-spin-slow" /> Demo Controls
+            </button>
+          )}
         </div>
       </footer>
 

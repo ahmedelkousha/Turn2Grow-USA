@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Providers } from "@/app/providers";
 import "@/app/globals.css";
 
@@ -10,6 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://turn2grow.com"),
   title: {
     default: "Turn2Grow — Custom Software for Growing-businesses",
     template: "%s — Turn2Grow",
@@ -59,8 +61,9 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <Providers>
           <div className="min-h-screen bg-background text-foreground">
+            <SmoothScroll />
             <Header />
-            <main className="pt-16">{children}</main>
+            <main className="">{children}</main>
             <Footer />
           </div>
         </Providers>

@@ -1,9 +1,10 @@
 import { HeroSection } from "@/components/home/HeroSection";
+import { PartnersSection } from "@/components/home/PartnersSection";
 import { AboutIntroSection } from "@/components/home/AboutIntroSection";
 import { ServicesByDomainSection } from "@/components/home/ServicesByDomainSection";
 import { DifferentiatorsSection } from "@/components/home/DifferentiatorsSection";
 import { WhyChooseSection } from "@/components/home/WhyChooseSection";
-import { HealthcareSplitSection } from "@/components/home/HealthcareSplitSection";
+import { EnterpriseSplitSection } from "@/components/home/EnterpriseSplitSection";
 import { AiSplitSection } from "@/components/home/AiSplitSection";
 import { CaseStudiesSection } from "@/components/home/CaseStudiesSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
@@ -14,11 +15,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <PartnersSection />
       <AboutIntroSection />
       <ServicesByDomainSection />
       <DifferentiatorsSection />
       <WhyChooseSection />
-      <HealthcareSplitSection />
+      <EnterpriseSplitSection />
       <AiSplitSection />
       <CaseStudiesSection />
       <TestimonialsSection />

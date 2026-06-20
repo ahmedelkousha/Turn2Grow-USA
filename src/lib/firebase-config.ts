@@ -41,14 +41,14 @@
 // ============================================================================
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDlpx_NgIaensnMMPC6ZET-S0rQBg1RPFU",
-  authDomain: "turn2grow-91cb0.firebaseapp.com",
-  projectId: "turn2grow-91cb0",
-  storageBucket: "turn2grow-91cb0.firebasestorage.app",
-  messagingSenderId: "888191096924",
-  appId: "1:888191096924:web:7016a60c2884f820976e99",
-  measurementId: "G-8D0RRPJ2M2",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 export const isFirebaseConfigured =
-  !firebaseConfig.apiKey.startsWith("REPLACE_WITH_");
+  !!firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("REPLACE_WITH_");

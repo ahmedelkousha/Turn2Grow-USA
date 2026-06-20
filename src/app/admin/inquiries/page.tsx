@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Mail, Phone, Building2, Trash2, Archive, CheckCheck } from "lucide-react";
 import { AdminGate } from "@/components/AdminGate";
 import { listInquiries, updateInquiry, deleteInquiry, type Inquiry } from "@/lib/firebase-data";
+import { Button } from "@/components/ui/button";
 
 export default function AdminInquiriesPage() {
   return (
@@ -70,10 +71,28 @@ function InquiriesAdmin() {
             {i.topic && <p className="mt-3 text-xs uppercase tracking-wider text-primary">{i.topic}</p>}
             <p className="mt-2 whitespace-pre-wrap text-sm text-foreground">{i.message}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <a href={`mailto:${i.email}?subject=Re: your inquiry to Turn2Grow`} className="inline-flex items-center gap-1 rounded-full bg-gradient-orange px-3 py-1.5 text-xs font-medium text-primary-foreground">Reply</a>
-              {i.status !== "read" && <button onClick={() => i.id && update.mutate({ id: i.id, status: "read" })} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs"><CheckCheck className="h-3 w-3" /> Mark read</button>}
-              {i.status !== "archived" && <button onClick={() => i.id && update.mutate({ id: i.id, status: "archived" })} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs"><Archive className="h-3 w-3" /> Archive</button>}
-              <button onClick={() => { if (i.id && confirm("Delete this inquiry?")) del.mutate(i.id); }} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs text-destructive hover:bg-destructive/10"><Trash2 className="h-3 w-3" /> Delete</button>
+              <Button asChild variant="orange" size="premium-xs" shape="full">
+                <a href={`mailto:${i.email}?subject=Re: your inquiry to Turn2Grow`}>Reply</a>
+              </Button>
+              {i.status !== "read" && (
+                <Button variant="outline" size="premium-xs" shape="full" onClick={() => i.id && update.mutate({ id: i.id, status: "read" })}>
+                  <CheckCheck className="h-3.5 w-3.5" /> Mark read
+                </Button>
+              )}
+              {i.status !== "archived" && (
+                <Button variant="outline" size="premium-xs" shape="full" onClick={() => i.id && update.mutate({ id: i.id, status: "archived" })}>
+                  <Archive className="h-3.5 w-3.5" /> Archive
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="premium-xs"
+                shape="full"
+                className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+                onClick={() => { if (i.id && confirm("Delete this inquiry?")) del.mutate(i.id); }}
+              >
+                <Trash2 className="h-3.5 w-3.5" /> Delete
+              </Button>
             </div>
           </article>
         ))}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { Lock, Mail, Loader2, AlertTriangle } from "lucide-react";
 import { getFirebaseAuth, isFirebaseConfigured } from "@/lib/firebase";
+import { Button } from "@/components/ui/button";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -77,12 +78,16 @@ export default function AdminLogin() {
             </div>
           </div>
           {error && <p className="rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">{error}</p>}
-          <button
-            type="submit" disabled={busy}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-orange px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow disabled:opacity-60"
+          <Button
+            type="submit"
+            disabled={busy}
+            variant="orange"
+            size="premium-lg"
+            shape="full"
+            className="w-full"
           >
             {busy && <Loader2 className="h-4 w-4 animate-spin" />} Sign in
-          </button>
+          </Button>
         </form>
         <p className="mt-6 text-center text-xs text-muted-foreground">
           <Link href="/" className="hover:text-foreground">← Back to site</Link>

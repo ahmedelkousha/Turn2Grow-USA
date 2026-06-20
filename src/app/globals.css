@@ -48,12 +48,15 @@
   --radius: 0.75rem;
 
   /* Brand */
-  --brand-orange: oklch(0.72 0.17 42);          /* #FB7B4A */
+  --brand-orange: oklch(0.72 0.17 42);
+  /* #FB7B4A */
   --brand-orange-glow: oklch(0.78 0.18 45);
-  --brand-silver: oklch(0.74 0.014 220);        /* #A0ABAC */
+  --brand-silver: oklch(0.74 0.014 220);
+  /* #A0ABAC */
 
   /* Dark premium tech surface */
-  --background: oklch(0.14 0.005 250);          /* deep charcoal */
+  --background: oklch(0.14 0.005 250);
+  /* deep charcoal */
   --foreground: oklch(0.96 0.004 250);
   --surface: oklch(0.18 0.006 250);
   --surface-elevated: oklch(0.22 0.008 250);
@@ -82,12 +85,35 @@
 
   /* Composite tokens */
   --gradient-hero: radial-gradient(ellipse at top, oklch(0.72 0.17 42 / 0.15), transparent 60%),
-                   linear-gradient(180deg, oklch(0.14 0.005 250) 0%, oklch(0.12 0.005 250) 100%);
+    linear-gradient(180deg, oklch(0.14 0.005 250) 0%, oklch(0.12 0.005 250) 100%);
   --gradient-orange: linear-gradient(135deg, oklch(0.72 0.17 42) 0%, oklch(0.78 0.18 35) 100%);
   --gradient-text: linear-gradient(180deg, oklch(0.98 0.004 250) 0%, oklch(0.74 0.014 220) 100%);
   --shadow-glow: 0 0 60px -10px oklch(0.72 0.17 42 / 0.5);
   --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.6);
   --shadow-card: 0 8px 30px -10px oklch(0 0 0 / 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: oklch(0.72 0.17 42 / 0.5);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(0.72 0.17 42 / 0.95);
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .dark {
@@ -126,7 +152,7 @@ html.light {
   --ring: oklch(0.66 0.18 38 / 50%);
 
   --gradient-hero: radial-gradient(ellipse at top, oklch(0.66 0.18 38 / 0.18), transparent 60%),
-                   linear-gradient(180deg, oklch(0.985 0.003 250) 0%, oklch(0.96 0.004 250) 100%);
+    linear-gradient(180deg, oklch(0.985 0.003 250) 0%, oklch(0.96 0.004 250) 100%);
   --gradient-orange: linear-gradient(135deg, oklch(0.66 0.18 38) 0%, oklch(0.72 0.18 32) 100%);
   --gradient-text: linear-gradient(180deg, oklch(0.18 0.01 250) 0%, oklch(0.4 0.02 250) 100%);
   --shadow-glow: 0 0 60px -10px oklch(0.66 0.18 38 / 0.35);
@@ -142,7 +168,6 @@ html.light body {
 
 html.light .glass {
   background: oklch(1 0 0 / 0.7);
-  border: 1px solid oklch(0.2 0.02 250 / 0.08);
 }
 
 html.light .grid-bg {
@@ -152,8 +177,14 @@ html.light .grid-bg {
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -164,10 +195,16 @@ html.light .grid-bg {
       radial-gradient(600px circle at 90% 10%, oklch(0.72 0.17 42 / 0.05), transparent 50%);
     background-attachment: fixed;
   }
-  h1, h2, h3, h4, h5 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+
   ::selection {
     background: oklch(0.72 0.17 42 / 0.3);
     color: oklch(0.98 0 0);
@@ -181,28 +218,76 @@ html.light .grid-bg {
     background-clip: text;
     color: transparent;
   }
+
   .text-gradient-orange {
     background: var(--gradient-orange);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .bg-hero { background: var(--gradient-hero); }
-  .bg-gradient-orange { background: var(--gradient-orange); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
-  .shadow-card { box-shadow: var(--shadow-card); }
-  .glass {
-    background: oklch(0.18 0.006 250 / 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid oklch(1 0 0 / 0.06);
+
+  .bg-hero {
+    background: var(--gradient-hero);
   }
+
+  .bg-gradient-orange {
+    background: var(--gradient-orange);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass {
+    background: oklab(18.086% -0.00194 -0.00486 / 0.6);
+    backdrop-filter: blur(12px);
+  }
+
   .grid-bg {
     background-image:
       linear-gradient(oklch(1 0 0 / 0.03) 1px, transparent 1px),
       linear-gradient(90deg, oklch(1 0 0 / 0.03) 1px, transparent 1px);
     background-size: 48px 48px;
   }
-  .hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swiper-marquee-row .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
 }

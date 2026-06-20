@@ -5,6 +5,7 @@ import { Mail, MapPin, Facebook, Instagram, Linkedin, Twitter } from "lucide-rea
 import { Logo } from "./Logo";
 import { services } from "@/lib/site-data";
 import { useSameRouteNavigation } from "@/hooks/use-same-route-navigation";
+import { useLinkClickEvent } from "@/hooks/use-link-click-event";
 import { usePathname } from "next/navigation";
 
 function ThreadsIcon({ className }: { className?: string }) {
@@ -26,6 +27,7 @@ const socialLinks = [
 export function Footer() {
   const handleLinkClick = useSameRouteNavigation();
   const pathname = usePathname();
+  const handleLinkClickEvent = useLinkClickEvent();
 
   if (pathname?.startsWith("/coming-soon")) return null;
 
@@ -34,12 +36,18 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo />
+            <Link
+              href="/"
+              className="inline-block"
+              onClick={(e) => handleLinkClickEvent(e, "/")}
+            >
+              <Logo />
+            </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              We engineer software that moves businesses forward. Custom solutions for healthcare and SMEs.
+              We engineer software that moves businesses forward. Custom SaaS, enterprise platforms, and cloud solutions.
             </p>
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
-              <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Delaware, United States</p>
+              <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Wilmington, NC, United States</p>
               <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> hello@turn2grow.com</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -81,7 +89,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/40 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Turn2Grow. All rights reserved.</p>
-          <p>HIPAA-aware · SOC 2 conscious · Built in Delaware</p>
+          <p>SOC 2 conscious · HIPAA aware · Built in North Carolina</p>
         </div>
       </div>
     </footer>

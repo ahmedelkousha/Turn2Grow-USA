@@ -4,7 +4,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export type ServiceDomain = "Healthcare" | "AI & Data" | "Cloud & DevOps" | "Custom Software";
+export type ServiceDomain = "Custom Software" | "AI & Data" | "Cloud & DevOps" | "Healthcare";
 
 export type Service = {
   slug: string;
@@ -52,10 +52,10 @@ export const serviceDomainMap: Record<string, ServiceDomain> = {
 };
 
 export const serviceDomains: { domain: ServiceDomain; tagline: string }[] = [
-  { domain: "Healthcare", tagline: "Specialty-tuned platforms for clinical operations, virtual care, and revenue cycle." },
+  { domain: "Custom Software", tagline: "Bespoke SaaS, CRM, web, and mobile products built around your business." },
   { domain: "AI & Data", tagline: "Intelligence and analytics layered on top of your existing systems." },
   { domain: "Cloud & DevOps", tagline: "Resilient infrastructure, security, and the roadmap to get you there." },
-  { domain: "Custom Software", tagline: "Bespoke SaaS, CRM, web, and mobile products built around your business." },
+  { domain: "Healthcare", tagline: "Specialty-tuned platforms for clinical operations, virtual care, and revenue cycle." },
 ];
 
 export function servicesGroupedByDomain(): { domain: ServiceDomain; tagline: string; services: Service[] }[] {
@@ -461,6 +461,25 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "b2b-saas-payment-automation",
+    client: "PaySync Solutions",
+    industry: "Fintech SaaS",
+    title: "Automating payment reconciliations for a global SaaS provider",
+    summary: "Building a multi-tenant payment reconciliation engine — cutting manual audit time by 70% and securing SOC 2 compliance.",
+    challenge:
+      "A high-volume B2B billing platform was losing thousands of hours annually reconciling multi-currency payouts across Stripe, PayPal, and local bank transfers. Discrepancies were common, and their SOC 2 audit was blocked by a lack of transaction lineage.",
+    solution:
+      "We designed and engineered a custom event-driven reconciliation engine that automatically matched payouts, logs, and billing entries in real-time. We also built an immutable ledger for audit logging, fully resolving their compliance requirements.",
+    results: [
+      { metric: "70%", label: "Reduction in manual accounting labor" },
+      { metric: "99.99%", label: "Accuracy in multi-currency payouts matching" },
+      { metric: "SOC 2", label: "Compliance audit passed without qualifications" },
+      { metric: "3M+", label: "Monthly transactions processed seamlessly" },
+    ],
+    services: ["SaaS Product Development", "Business Process Automation", "Data Analytics & Dashboards"],
+    duration: "6 months",
+  },
+  {
     slug: "regional-cardiology-ehr-modernization",
     client: "Mid-Atlantic Cardiology Group",
     industry: "Healthcare",
@@ -532,6 +551,23 @@ export type BlogPost = {
 };
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "designing-complex-b2b-systems",
+    title: "Designing B2B SaaS that users actually love: workflows over features",
+    excerpt: "The reason enterprise software feels clunky isn't design apathy — it's that most platforms prioritize checklists over user workflows. Here's how we design for productivity.",
+    category: "Product Design",
+    date: "May 28, 2026",
+    readTime: "7 min read",
+    author: "Turn2Grow Editorial",
+    imageUrl: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1600&q=80",
+    content: [
+      { body: "If you ask a hundred professionals what they think of their internal tools or B2B SaaS, ninety will say 'it's slow' or 'it takes too many clicks.' That isn't just about loading speeds or visual style. It's a signal that B2B software is rarely designed around the user's actual daily workflow." },
+      { heading: "The original sin: database-first design", body: "Most enterprise platforms are built by wrapping a UI around database tables. A new field in the database means a new input box in the form. But humans don't think in rows and columns; they think in tasks. Designing database-first results in disjointed, multi-tab navigation that slows down real work." },
+      { heading: "What changes when you design workflow-first", body: "When we design B2B systems, we shadow users to map their real decision paths. When you prioritize the user's focus, processing time drops by 30-50%, data entry errors decrease, and training time for new hires is slashed. Good design directly affects business metrics." },
+      { heading: "Three principles for B2B UX", body: "First, contextual actions: only show buttons and controls when they are relevant to the current step. Second, single-screen task hubs: prevent tab-switching by pulling all related context into one view. Third, smart defaults: predict the most likely next step based on historical actions." },
+      { heading: "Aesthetics are a differentiator", body: "B2B users are consumers in their personal lives. They expect the software they use at work to look and feel as modern, responsive, and elegant as the consumer apps they use every day. High-contrast themes, smooth transitions, and responsive layouts aren't just aesthetic choices — they build trust and reduce user fatigue." },
+    ],
+  },
   {
     slug: "what-modern-ehr-should-actually-feel-like",
     title: "What a modern EHR should actually feel like in 2026",

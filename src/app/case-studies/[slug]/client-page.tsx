@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, ChevronRight, Loader2 } from "lucide-react";
 import { getCaseStudyBySlug } from "@/lib/firebase-data";
 import { isFirebaseConfigured } from "@/lib/firebase";
 import { type CaseStudy } from "@/lib/site-data";
+import { Button } from "@/components/ui/button";
 
 export function CaseStudyClient({ slug, seed }: { slug: string; seed: CaseStudy | null }) {
   const remote = useQuery({
@@ -88,9 +89,11 @@ export function CaseStudyClient({ slug, seed }: { slug: string; seed: CaseStudy 
           <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
             <ArrowLeft className="h-4 w-4" /> All case studies
           </Link>
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-orange px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-glow">
-            Start a similar project <ArrowRight className="h-4 w-4" />
-          </Link>
+          <Button asChild variant="orange" size="premium-sm" shape="full">
+            <Link href="/contact">
+              Start a similar project <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </section>
     </>

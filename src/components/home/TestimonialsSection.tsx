@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   { quote: "Turn2Grow rebuilt our patient intake and billing stack in twelve weeks. First-pass claim acceptance jumped from 78% to 94% — the ROI paid for the engagement in a single quarter.", name: "Dr. Maya Patel", role: "COO, Northshore Cardiology Group", rating: 5 },
@@ -21,15 +22,15 @@ export function TestimonialsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading eyebrow="What clients say" title="Trusted by founders and operators" description="Real words from the teams we've shipped alongside." />
-          <div className="hidden gap-1 sm:flex">
-            <button onClick={() => scrollBy(-1)} className="rounded-full border border-border bg-surface p-2.5 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary" aria-label="Scroll testimonials left"><ChevronLeft className="h-4 w-4" /></button>
-            <button onClick={() => scrollBy(1)} className="rounded-full border border-border bg-surface p-2.5 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary" aria-label="Scroll testimonials right"><ChevronRight className="h-4 w-4" /></button>
+          <div className="hidden gap-2 sm:flex">
+            <Button variant="premium-icon" size="premium-icon" shape="full" onClick={() => scrollBy(-1)} aria-label="Scroll testimonials left"><ChevronLeft className="h-4 w-4" /></Button>
+            <Button variant="premium-icon" size="premium-icon" shape="full" onClick={() => scrollBy(1)} aria-label="Scroll testimonials right"><ChevronRight className="h-4 w-4" /></Button>
           </div>
         </div>
         <div className="relative mt-12">
           <div ref={scrollRef} className="hide-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 px-4 sm:px-6 lg:px-8">
             {testimonials.map((t, i) => (
-              <motion.figure key={t.name} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.4, delay: i * 0.05 }} className="group relative flex snap-start shrink-0 basis-[88%] flex-col justify-between rounded-2xl border border-border/60 bg-surface p-7 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow sm:basis-[60%] lg:basis-[40%]">
+              <motion.figure key={t.name} initial={{ opacity: 0}} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.4, delay: i * 0.05 }} className="group relative flex snap-start shrink-0 basis-[88%] flex-col justify-between rounded-2xl border border-border/60 bg-surface p-7 transition-all hover:border-primary/40 hover:shadow-glow sm:basis-[60%] lg:basis-[40%]">
                 <Quote className="h-8 w-8 text-primary/40" aria-hidden />
                 <blockquote className="mt-4 text-base text-foreground sm:text-lg">&ldquo;{t.quote}&rdquo;</blockquote>
                 <div className="mt-6 flex items-center gap-1 text-primary">{Array.from({ length: t.rating }).map((_, idx) => <Star key={idx} className="h-4 w-4 fill-current" />)}</div>

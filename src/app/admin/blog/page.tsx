@@ -10,6 +10,7 @@ import {
   listBlogPosts, createBlogPost, updateBlogPost, deleteBlogPost,
   type AdminBlogPost,
 } from "@/lib/firebase-data";
+import { Button } from "@/components/ui/button";
 
 export default function AdminBlogPage() {
   return (
@@ -58,9 +59,9 @@ function BlogAdmin() {
           <h1 className="text-3xl font-semibold text-gradient">Blog posts</h1>
           <p className="mt-2 text-sm text-muted-foreground">Create, edit, and remove articles published on the site.</p>
         </div>
-        <button onClick={() => setEditing(empty)} className="inline-flex items-center gap-2 rounded-full bg-gradient-orange px-4 py-2 text-sm font-medium text-primary-foreground shadow-glow">
+        <Button onClick={() => setEditing(empty)} variant="orange" size="premium-sm" shape="full">
           <Plus className="h-4 w-4" /> New post
-        </button>
+        </Button>
       </div>
 
       <div className="mt-8 rounded-2xl border border-border/60 bg-surface">
@@ -77,8 +78,12 @@ function BlogAdmin() {
                   <p className="truncate text-xs text-muted-foreground">{p.category} · {p.date} · /{p.slug}</p>
                 </div>
                 <div className="flex shrink-0 gap-1">
-                  <button onClick={() => setEditing(p)} className="rounded-md p-2 text-muted-foreground hover:bg-background hover:text-primary"><Pencil className="h-4 w-4" /></button>
-                  <button onClick={() => { if (p.id && confirm("Delete this post?")) del.mutate(p.id); }} className="rounded-md p-2 text-muted-foreground hover:bg-background hover:text-destructive"><Trash2 className="h-4 w-4" /></button>
+                  <Button variant="ghost" size="icon" onClick={() => setEditing(p)} className="text-muted-foreground hover:text-primary">
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={() => { if (p.id && confirm("Delete this post?")) del.mutate(p.id); }} className="text-muted-foreground hover:text-destructive">
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </li>
             ))}
@@ -134,7 +139,7 @@ function BlogEditor({ post, busy, onClose, onSave }: { post: AdminBlogPost; busy
       <div className="mx-auto my-10 max-w-3xl rounded-3xl border border-border/60 bg-surface p-6 shadow-elegant">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">{p.id ? "Edit post" : "New post"}</h2>
-          <button onClick={onClose} className="rounded-md p-2 text-muted-foreground hover:bg-background"><X className="h-5 w-5" /></button>
+          <Button variant="ghost" size="icon" onClick={onClose} className="text-muted-foreground"><X className="h-5 w-5" /></Button>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); onSave(p); }} className="mt-5 space-y-4">
           <F label="Title"><input className={input} value={p.title} onChange={(e) => setP({ ...p, title: e.target.value })} required /></F>
@@ -174,10 +179,10 @@ function BlogEditor({ post, busy, onClose, onSave }: { post: AdminBlogPost; busy
             <textarea className={input} rows={14} value={p.body} onChange={(e) => setP({ ...p, body: e.target.value })} required />
           </F>
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="rounded-full border border-border px-4 py-2 text-sm">Cancel</button>
-            <button type="submit" disabled={busy} className="inline-flex items-center gap-2 rounded-full bg-gradient-orange px-5 py-2 text-sm font-semibold text-primary-foreground shadow-glow disabled:opacity-60">
+            <Button type="button" variant="premium-outline" size="premium-sm" shape="full" onClick={onClose}>Cancel</Button>
+            <Button type="submit" disabled={busy} variant="orange" size="premium-sm" shape="full">
               {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save
-            </button>
+            </Button>
           </div>
         </form>
       </div>
