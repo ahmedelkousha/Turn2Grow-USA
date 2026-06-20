@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
@@ -46,7 +47,7 @@ export default function BlogIndex() {
                 <div className="grid gap-0 md:grid-cols-2">
                   <div className="relative aspect-[16/10] overflow-hidden bg-gradient-orange md:aspect-auto">
                     {featured.imageUrl ? (
-                      <img src={featured.imageUrl} alt={featured.title} className="absolute inset-0 h-full w-full object-cover" />
+                      <Image src={featured.imageUrl} alt={featured.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                     ) : (
                       <>
                         <div className="absolute inset-0 grid-bg opacity-30" />
@@ -85,8 +86,8 @@ export default function BlogIndex() {
               >
                 <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-surface transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow">
                   {post.imageUrl && (
-                    <div className="aspect-[16/9] overflow-hidden">
-                      <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image src={post.imageUrl} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     </div>
                   )}
                   <div className="flex flex-1 flex-col p-6">

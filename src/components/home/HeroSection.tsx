@@ -47,7 +47,7 @@ export function HeroSection() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          markers: true,
+          markers: false,
           end: `+=${scrollDistance}`, // Responsive scroll trigger distance
           pinSpacing: true,
           pin: containerRef.current,

@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export function AiSplitSection() {
@@ -30,7 +31,7 @@ export function AiSplitSection() {
               end: "top -40%",
               pinSpacing: false,
               pin: '.text-ai',
-              markers: true,
+              markers: false,
               scrub: 1,
               invalidateOnRefresh: true
             }
@@ -61,7 +62,7 @@ export function AiSplitSection() {
     <section ref={containerRef} className="py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative order-2 overflow-hidden rounded-3xl border border-border/40 shadow-elegant lg:order-1">
-          <img src={illusAi.src} alt="AI network" width={1280} height={960} loading="lazy" className="ai-image h-[90vh] w-full object-cover" />
+          <Image src={illusAi} alt="AI network" width={1280} height={960} placeholder="blur" className="ai-image h-[90vh] w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-tl from-background/40 to-transparent" />
         </motion.div>
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1}} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-ai order-1 lg:order-2">

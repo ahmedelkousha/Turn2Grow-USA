@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Calendar, Clock, ChevronRight, Loader2 } from "lucide-react";
@@ -66,8 +67,8 @@ export function BlogPostClient({ slug, seed }: { slug: string; seed: SeedBlogPos
 
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
         {post.imageUrl && (
-          <div className="mb-10 overflow-hidden rounded-3xl border border-border/40">
-            <img src={post.imageUrl} alt={post.title} className="aspect-[16/9] w-full object-cover" />
+          <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl border border-border/40">
+            <Image src={post.imageUrl} alt={post.title} fill priority sizes="(max-width: 768px) 100vw, 1200px" className="object-cover" />
           </div>
         )}
         <div className="prose prose-invert max-w-none space-y-6">

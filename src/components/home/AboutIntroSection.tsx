@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Users, Award } from "lucide-react";
 import aboutTeam from "@/assets/about-team.jpg";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -39,7 +40,7 @@ export function AboutIntroSection() {
             end: "top -40%",
             pinSpacing: false,
             pin: '.text-about',
-            markers: true,
+            markers: false,
             scrub: 1,
             invalidateOnRefresh: true
           }
@@ -125,7 +126,7 @@ export function AboutIntroSection() {
           </div>
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="relative overflow-hidden rounded-3xl border border-border/40 shadow-elegant">
-          <img src={aboutTeam.src} alt="Turn2Grow team" width={1600} height={1067} loading="lazy" className="about-image w-full object-cover h-[90vh]" />
+          <Image src={aboutTeam} alt="Turn2Grow team" width={1600} height={1067} placeholder="blur" className="about-image w-full object-cover h-[90vh]" />
           <div className="absolute inset-0 bg-gradient-to-tr from-background/60 via-background/10 to-transparent" />
           <div className="about-promise-card absolute bottom-6 left-6 right-6 rounded-2xl border border-border/40 bg-background/70 p-4 backdrop-blur">
             <p className="text-xs font-medium uppercase tracking-wider text-primary">Our promise</p>

@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Calendar, Clock, ArrowRight, ArrowUpRight } 
 import { blogPosts } from "@/lib/site-data";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function BlogSection() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -29,7 +30,17 @@ export function BlogSection() {
             {blogPosts.map((post, i) => (
               <motion.div key={post.slug} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.4, delay: i * 0.05 }} className="snap-start shrink-0 basis-[85%] sm:basis-[55%] lg:basis-[32%]">
                 <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-surface transition-all hover:border-primary/40 hover:shadow-glow">
-                  {post.imageUrl && <div className="aspect-[16/9] overflow-hidden"><img src={post.imageUrl} alt={post.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>}
+                  {post.imageUrl && (
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={post.imageUrl}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
                   <div className="flex flex-1 flex-col p-6">
                     <p className="text-xs font-medium uppercase tracking-wider text-primary">{post.category}</p>
                     <h3 className="mt-3 text-lg font-semibold text-foreground">{post.title}</h3>

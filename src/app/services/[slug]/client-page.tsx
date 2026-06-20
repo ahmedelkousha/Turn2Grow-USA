@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import { services } from "@/lib/site-data";
@@ -58,11 +59,13 @@ export function ServiceDetailClient({ slug }: { slug: string }) {
       {service.imageUrl && (
         <section className="border-b border-border/40">
           <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-            <div className="overflow-hidden rounded-3xl border border-border/40 shadow-glow">
-              <img
+            <div className="relative aspect-[21/9] overflow-hidden rounded-3xl border border-border/40 shadow-glow">
+              <Image
                 src={service.imageUrl}
                 alt={service.title}
-                className="aspect-[21/9] w-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                className="object-cover"
               />
             </div>
           </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Plus, Pencil, Trash2, Loader2, X, Save, Upload, ImageOff } from "lucide-react";
+import Image from "next/image";
 import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { AdminGate } from "@/components/AdminGate";
 import { getFirebaseStorage } from "@/lib/firebase";
@@ -153,8 +154,8 @@ function BlogEditor({ post, busy, onClose, onSave }: { post: AdminBlogPost; busy
           <F label="Cover image">
             <div className="space-y-3">
               {p.imageUrl ? (
-                <div className="relative overflow-hidden rounded-xl border border-border">
-                  <img src={p.imageUrl} alt="Cover preview" className="aspect-[16/9] w-full object-cover" />
+                <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border">
+                  <Image src={p.imageUrl} alt="Cover preview" fill className="object-cover" />
                   <button type="button" onClick={() => setP({ ...p, imageUrl: "" })} className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-background/80 px-2.5 py-1 text-xs text-foreground backdrop-blur hover:bg-background">
                     <ImageOff className="h-3.5 w-3.5" /> Remove
                   </button>

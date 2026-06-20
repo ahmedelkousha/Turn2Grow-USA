@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export function EnterpriseSplitSection() {
@@ -29,7 +30,7 @@ export function EnterpriseSplitSection() {
               end: "top -40%",
               pinSpacing: false,
               pin: '.text-enterprise',
-              markers: true,
+              markers: false,
               scrub: 1,
               invalidateOnRefresh: true
             }
@@ -76,7 +77,7 @@ export function EnterpriseSplitSection() {
           <Link href="/services" className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">Explore our services <ArrowRight className="h-4 w-4" /></Link>
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative overflow-hidden rounded-3xl border border-border/40 shadow-elegant">
-          <img src={illusSecurity.src} alt="Security and compliance visualization" width={1280} height={960} loading="lazy" className="security-image h-[90vh] w-full object-cover" />
+          <Image src={illusSecurity} alt="Security and compliance visualization" width={1280} height={960} placeholder="blur" className="security-image h-[90vh] w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-tr from-background/40 to-transparent" />
         </motion.div>
       </div>

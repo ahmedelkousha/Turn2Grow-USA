@@ -6,6 +6,7 @@ import { ArrowRight, Heart, Target, Compass, Shield, Sparkles, Rocket } from "lu
 import { PageHero } from "@/components/PageHero";
 import aboutTeam from "@/assets/about-team.jpg";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const values = [
   { icon: Heart, title: "Craft, not output", body: "We measure ourselves by what we ship, not what we bill." },
@@ -34,7 +35,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="relative overflow-hidden rounded-3xl border border-border/40 shadow-elegant"
           >
-            <img src={aboutTeam.src} alt="Turn2Grow team collaborating" width={1600} height={1067} loading="lazy" className="h-full w-full object-cover" />
+            <Image src={aboutTeam} alt="Turn2Grow team collaborating" placeholder="blur" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
           </motion.div>
           <motion.div
@@ -128,10 +129,11 @@ export default function AboutPage() {
                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-surface/50 p-5 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow"
               >
                 <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

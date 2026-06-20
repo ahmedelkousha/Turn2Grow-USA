@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { servicesGroupedByDomain } from "@/lib/site-data";
@@ -49,10 +50,11 @@ export default function ServicesIndex() {
                     >
                       {s.imageUrl && (
                         <div className="relative aspect-[16/9] overflow-hidden">
-                          <img
+                          <Image
                             src={s.imageUrl}
                             alt={s.title}
-                            loading="lazy"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />

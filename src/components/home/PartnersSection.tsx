@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -49,7 +50,7 @@ export function PartnersSection() {
       row1Ref.current,
       { x: "0%" },
       {
-        x: "-25%",
+        x: "-15%",
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -63,7 +64,7 @@ export function PartnersSection() {
     // Slide row 2 right on scroll
     gsap.fromTo(
       row2Ref.current,
-      { x: "-25%" },
+      { x: "-15%" },
       {
         x: "0%",
         ease: "none",
@@ -107,11 +108,12 @@ export function PartnersSection() {
           <div ref={row1Ref} className="flex gap-6 w-max flex-nowrap">
             {slidesRow1.map((p, i) => (
               <div key={i} className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
-                <img 
+                <Image 
                   src={p.logo} 
                   alt={`${p.name} logo`} 
+                  width={100}
+                  height={20}
                   className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
-                  loading="lazy"
                 />
                 <span>{p.name}</span>
               </div>
@@ -124,11 +126,12 @@ export function PartnersSection() {
           <div ref={row2Ref} className="flex gap-6 w-max flex-nowrap">
             {slidesRow2.map((p, i) => (
               <div key={i} className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
-                <img 
+                <Image 
                   src={p.logo} 
                   alt={`${p.name} logo`} 
+                  width={100}
+                  height={20}
                   className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
-                  loading="lazy"
                 />
                 <span>{p.name}</span>
               </div>
