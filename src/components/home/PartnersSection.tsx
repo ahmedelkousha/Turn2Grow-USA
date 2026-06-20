@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+import { useGSAP } from "@gsap/react";
+
+import "swiper/css";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -47,13 +50,14 @@ export function PartnersSection() {
 
     const mm = gsap.matchMedia();
 
+    // Desktop & Tablet scroll-linked GSAP parallax
     mm.add("(min-width: 768px)", () => {
       // Slide row 1 left on scroll
       gsap.fromTo(
         row1Ref.current,
         { x: "0%" },
         {
-          x: "-15%",
+          x: "-30%",
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -67,7 +71,7 @@ export function PartnersSection() {
       // Slide row 2 right on scroll
       gsap.fromTo(
         row2Ref.current,
-        { x: "-15%" },
+        { x: "-30%" },
         {
           x: "0%",
           ease: "none",
@@ -77,29 +81,6 @@ export function PartnersSection() {
             end: "bottom top",
             scrub: 1,
           },
-        }
-      );
-    });
-
-    mm.add("(max-width: 767px)", () => {
-      // Mobile: Smooth, infinite loop marquee (0 scroll listener overhead)
-      gsap.fromTo(row1Ref.current,
-        { x: "0%" },
-        {
-          x: "-50%",
-          duration: 20,
-          ease: "none",
-          repeat: -1
-        }
-      );
-
-      gsap.fromTo(row2Ref.current,
-        { x: "-50%" },
-        {
-          x: "0%",
-          duration: 20,
-          ease: "none",
-          repeat: -1
         }
       );
     });
@@ -119,7 +100,6 @@ export function PartnersSection() {
     );
   }
 
-  // Repeat logos 2 times to prevent trailing gaps on wide viewports (cut DOM nodes by 50%)
   const slidesRow1 = [...row1, ...row1];
   const slidesRow2 = [...row2, ...row2];
 
@@ -131,7 +111,8 @@ export function PartnersSection() {
         </h2>
       </div>
 
-      <div className="relative mt-10 flex flex-col gap-6 [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] select-none overflow-hidden">
+      {/* Desktop & Tablet View: GSAP Scroll Parallax Marquee */}
+      <div className="hidden md:flex flex-col gap-6 [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] select-none overflow-hidden mt-10">
         {/* Row 1 - Slides Left */}
         <div className="w-full overflow-hidden">
           <div ref={row1Ref} className="flex gap-6 w-max flex-nowrap">
@@ -166,6 +147,78 @@ export function PartnersSection() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Mobile View: SwiperJS Auto-playing Continuous Marquee */}
+      <div className="block md:hidden mt-10 flex flex-col gap-6 [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] select-none overflow-hidden">
+        {/* Row 1 - Slides Left */}
+        <div className="w-full overflow-hidden">
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            speed={2000}
+            slidesPerView="auto"
+            spaceBetween={24}
+            allowTouchMove={false}
+            observer={true}
+            observeParents={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
+            className="swiper-marquee-row select-none"
+          >
+            {slidesRow1.map((p, i) => (
+              <SwiperSlide key={i} className="!w-auto">
+                <div className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={p.logo} 
+                    alt={`${p.name} logo`} 
+                    className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
+                    loading="lazy"
+                  />
+                  <span>{p.name}</span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Row 2 - Slides Right */}
+        <div className="w-full overflow-hidden">
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            speed={2000}
+            slidesPerView="auto"
+            spaceBetween={24}
+            allowTouchMove={false}
+            observer={true}
+            observeParents={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              reverseDirection: true,
+            }}
+            className="swiper-marquee-row select-none"
+          >
+            {slidesRow2.map((p, i) => (
+              <SwiperSlide key={i} className="!w-auto">
+                <div className="flex items-center gap-2.5 rounded-full border border-border/60 bg-surface/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-surface hover:shadow-glow">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={p.logo} 
+                    alt={`${p.name} logo`} 
+                    className="h-5 w-auto object-contain transition-opacity opacity-85 hover:opacity-100" 
+                    loading="lazy"
+                  />
+                  <span>{p.name}</span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>
